@@ -9,6 +9,8 @@ This webapp lists predefined roles and permissions for Google Cloud Platform Ide
 I built it so that I can quickly search for permissions and identify the associated role.
 The official [Google Documentation](https://cloud.google.com/iam/docs/understanding-roles) is too slow and messy for me.
 
+![Screenshot](./img/screenshot.png)
+
 ## 🧑‍💻 Development
 
 If you want to customize or run the webapp on your [Gitpod](https://gitpod.io/#https://github.com/Cyclenerd/google-cloud-iam) or local computer,
