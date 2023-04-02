@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+[%
+	PROCESS meta.tt2;
+	PROCESS favicon.tt2;
+%]
+<link rel="stylesheet" href="[% site.bootstrap.css %]">
+<link rel="stylesheet" href="[% site.tabulator.css %]">
+<script src="[% site.tabulator.js %]"></script>
+</head>
+<body>
+<header>
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand mb-0 h1" href="/">
+				<span class="d-none d-lg-block">Google Cloud ☁️ Identity and Access Management (IAM)</span>
+				<span class="d-lg-none">Google Cloud ☁️ IAM</span>
+			</a>
+		</div>
+	</nav>
+</header>
+<main>
+<div class="container-fluid">
+
+<div class="row mt-2 mb-2">
+<div class="col">
+<ul class="nav nav-tabs">
+	<li class="nav-item">
+		<a [% IF template.name == 'index.tt2' %]class="nav-link active" aria-current="page"[% ELSE %]class="nav-link"[% END %] 
+			href="/">Roles</a>
+	</li>
+	<li class="nav-item">
+		<a [% IF template.name == 'permissions.tt2' %]class="nav-link active" aria-current="page"[% ELSE %]class="nav-link"[% END %]
+			href="/permissions.html">Permissions</a>
+	</li>
+</ul>
+</div> <!-- // col -->
+</div> <!-- // row -->

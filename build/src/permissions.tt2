@@ -1,0 +1,44 @@
+[%- PROCESS header.tt2 -%]
+
+<h1>Permissions</h1>
+
+<blockquote class="blockquote">
+<p>
+There are <mark>[% permissions.size %]</mark> Google Cloud Identity and Access Management (IAM) permissions.
+</p>
+</blockquote>
+
+<div id="table"></div>
+
+<script>
+var table = new Tabulator("#table", {
+	ajaxURL:"permissions.json?v1",
+	height:"550px",
+	layout:"fitColumns",
+	dataTree:true,
+	dataTreeChildField:"roles",
+	dataTreeStartExpanded:false,
+	dataTreeFilter:false,
+	headerFilterLiveFilterDelay:10,
+	columns:[
+		{title:"Name", field:"name", headerFilter:"input", headerFilterPlaceholder:"Filter permission name...", width: 460, responsive:0},
+		{title:"Role Title", field:"title", headerFilter:"input", width: 360, formatter:function(row){
+			var name  = row.getData().name || '';
+			var title = row.getData().title || '';
+			if (name.match("roles/") && title) {
+				return '<a href="https://cloud.google.com/iam/docs/understanding-roles#' + name.replace('roles/','') + '" target="_blank">' + title + '</a>';
+			}
+		}},
+		{title:"Role Description", field:"desc", headerFilter:"input"},
+		{title:"Stage", field:"stage", headerFilter:"input", width: 100}
+	],
+	initialSort:[
+		{column:"name", dir:"asc"}
+	]
+});
+table.on("tableBuilt", function(){
+	table.setHeaderFilterFocus("name");
+});
+</script>
+
+[% PROCESS footer.tt2 %]

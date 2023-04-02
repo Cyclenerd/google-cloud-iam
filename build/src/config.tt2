@@ -1,0 +1,17 @@
+[%-
+site = {
+	url => 'https://cyclenerd.github.io/google-cloud-iam',
+	github = {
+		repo   => 'https://github.com/Cyclenerd/google-cloud-iam',
+		issues => 'https://github.com/Cyclenerd/google-cloud-iam/issues',
+	},
+	bootstrap = {
+		css  => 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css'
+		js   => 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js'
+	},
+	tabulator = {
+		css  => 'https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.4.4/css/tabulator.min.css'
+		js   => 'https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.4.4/js/tabulator.min.js'
+	},
+};
+-%]

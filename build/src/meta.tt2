@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+[%- IF template.name == 'index.tt2' -%]
+<title>Predefined Roles - Google Cloud Platform</title>
+<link rel="canonical" href="[% site.url %]/">
+
+[%- ELSIF template.name == 'permissions.tt2' -%]
+<title>Permissions - Google Cloud Platform</title>
+<link rel="canonical" href="[% site.url %]/permissions.html">
+
+[%- ELSIF template.name == '404.tt2'-%]
+<title>404 - Page Not Found</title>
+<meta name="robots" content="noindex, nofollow">
+
+[%- ELSE -%]
+<title>Google Cloud Identity and Access Management (IAM)</title>
+
+[%- END -%]
