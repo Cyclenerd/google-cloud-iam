@@ -1,6 +1,6 @@
 [%-
 site = {
-	url => 'https://cyclenerd.github.io/google-cloud-iam',
+	url => 'https://gcloud-iam.nkn-it.de',
 	github = {
 		repo   => 'https://github.com/Cyclenerd/google-cloud-iam',
 		issues => 'https://github.com/Cyclenerd/google-cloud-iam/issues',
