@@ -28,6 +28,8 @@ print "Please wait...\n";
 
 # JSON
 
+mkdir('../page/');
+
 open(ROLES, '>', $export_roles_json) or die $!;
 open(PERMISSION, '>', $export_permissions_json) or die $!;
 
