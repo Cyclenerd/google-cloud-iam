@@ -1,0 +1,79 @@
+name: "Build"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 4 15 * *' # At 04:05 on day-of-month 15.
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  website:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    name: Website
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get install \
+            libjson-xs-perl    \
+            libtemplate-perl   \
+            libplack-perl      \
+            jq
+
+      # https://github.com/marketplace/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Google Cloud SDK
+        env:
+          GOOGLE_CLOUD_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_CLOUD_SERVICE_ACCOUNT_KEY }}
+          GOOGLE_CLOUD_PROJECT_ID: ${{ secrets.GOOGLE_CLOUD_PROJECT_ID }}
+        run: |
+          echo "$GOOGLE_CLOUD_SERVICE_ACCOUNT_KEY" > "/tmp/service_account_key.json" && \
+          gcloud auth activate-service-account --key-file="/tmp/service_account_key.json" && \
+          gcloud config set project "$GOOGLE_CLOUD_PROJECT_ID"
+
+      - name: Get roles
+        run: |
+          cd build || exit 9
+          bash roles.sh || exit 9
+
+      - name: Get permissions
+        run: |
+          cd build || exit 9
+          bash permissions.sh || exit 9
+
+      - name: Quick test
+        run: |
+          cd build || exit 9
+          grep "roles/compute.admin" permissions.csv || exit 9
+
+      - name: Build web pages
+        run: |
+          cd build || exit 9
+          perl build.pl || exit 9
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      # https://github.com/marketplace/actions/upload-github-pages-artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'page/'
+      # https://github.com/marketplace/actions/deploy-github-pages-site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
