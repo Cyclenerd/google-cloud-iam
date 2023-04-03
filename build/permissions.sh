@@ -25,4 +25,9 @@ while read -r MY_NAME; do
 	((MY_COUNT++))
 done <"$MY_ROLES_TXT"
 
+echo "Quick test"
+grep "roles/compute.admin" "$MY_CSV" || exit 9
+grep "roles/bigquery.admin" "$MY_CSV" || exit 9
+grep "roles/billing.admin" "$MY_CSV" || exit 9
+
 echo "DONE"
