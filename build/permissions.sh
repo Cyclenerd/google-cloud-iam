@@ -8,7 +8,7 @@ echo "Get permissions... Please wait..."
 
 printf '%s;%s\n' "name" "permissions" > "$MY_CSV" || exit 9
 
-jq '.[].name' "$MY_ROLES_JSON" > "$MY_ROLES_TXT" || exit 9
+jq '.[].name' "$MY_ROLES_JSON" | sort -u > "$MY_ROLES_TXT" || exit 9
 
 MY_COUNT=1
 while read -r MY_NAME; do
