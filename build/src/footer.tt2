@@ -5,7 +5,7 @@
 <div class="row">
 <div class="col-xxl-10">
 <p class="text-muted">
-	Copyright [% USE date; date.format(date.now, '%Y'); %] <a rel="me" href="https://fosstodon.org/@cyclenerd">Nils Knieling</a>
+	Copyright [% USE date; date.format(date.now, '%Y'); %] <a href="https://www.nkn-it.de/">Nils Knieling</a>
 	·
 	All rights reserved
 </p>
