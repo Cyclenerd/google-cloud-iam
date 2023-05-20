@@ -2,8 +2,6 @@
 </main>
 <footer class="footer py-3 bg-light mt-2">
 <div class="container-fluid">
-<div class="row">
-<div class="col-xxl-10">
 <p class="text-muted">
 	Copyright [% USE date; date.format(date.now, '%Y'); %] <a href="https://www.nkn-it.de/">Nils Knieling</a>
 	·
@@ -19,11 +17,6 @@
 	·
 	<a href="https://www.nkn-it.de/imprint.html">Imprint</a>
 </p>
-</div> <!-- // col -->
-<div class="col-xxl-2 text-end">
-<p><a class="btn btn-outline-secondary" href="[% site.github.repo %]" role="button">🖊️ Edit on GitHub</a></p>
-</div> <!-- // col -->
-</div> <!-- // row -->
 </div> <!-- // container -->
 </footer>
 </body>
