@@ -53,6 +53,8 @@ while (my $row = <PERMISSIONS_CSV>) {
 	my @permissions = split(",", $role_permissions);
 	my @permissions_name = ();
 	foreach my $permission_name (sort @permissions) {
+		# Fix role names
+		$permission_name =~ s|iam.googleapis.com/|iam.|;
 		push(@permissions_name, {name => $permission_name });
 	}
 	$role_permissions_hash{$role_name} = \@permissions_name;
