@@ -1010,6 +1010,8 @@
 "roles/networkconnectivity.groupUser"
 "roles/networkconnectivity.hubAdmin"
 "roles/networkconnectivity.hubViewer"
+"roles/networkconnectivity.regionalEndpointAdmin"
+"roles/networkconnectivity.regionalEndpointViewer"
 "roles/networkconnectivity.serviceAgent"
 "roles/networkconnectivity.serviceClassUser"
 "roles/networkconnectivity.serviceProducerAdmin"
