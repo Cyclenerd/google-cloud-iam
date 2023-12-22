@@ -1,8 +1,8 @@
 # Google Cloud Identity and Access Management (IAM)
 
-[![Bagde: Google Cloud](https://img.shields.io/badge/Google%20Cloud-%234285F4.svg?logo=google-cloud&logoColor=white)](#readme)
-[![Bagde: CI](https://github.com/Cyclenerd/google-cloud-iam/actions/workflows/build.yml/badge.svg)](https://github.com/Cyclenerd/google-cloud-iam/actions/workflows/build.yml)
-[![Bagde: GitHub](https://img.shields.io/github/license/cyclenerd/google-cloud-iam)](https://github.com/Cyclenerd/google-cloud-iam/blob/master/LICENSE)
+[![Badge: Google Cloud](https://img.shields.io/badge/Google%20Cloud-%234285F4.svg?logo=google-cloud&logoColor=white)](#readme)
+[![Badge: CI](https://github.com/Cyclenerd/google-cloud-iam/actions/workflows/build.yml/badge.svg)](https://github.com/Cyclenerd/google-cloud-iam/actions/workflows/build.yml)
+[![Badge: GitHub](https://img.shields.io/github/license/cyclenerd/google-cloud-iam)](https://github.com/Cyclenerd/google-cloud-iam/blob/master/LICENSE)
 
 This webapp lists predefined roles and permissions for Google Cloud Platform Identity and Access Management (IAM).
 
