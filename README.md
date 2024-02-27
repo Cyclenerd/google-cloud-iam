@@ -13,10 +13,8 @@ The official [Google Documentation](https://cloud.google.com/iam/docs/understand
 
 ## 🧑‍💻 Development
 
-If you want to customize or run the webapp on your [Gitpod](https://gitpod.io/#https://github.com/Cyclenerd/google-cloud-iam) or local computer,
+If you want to customize or run this webapp on your local computer,
 you need the following requirements.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Cyclenerd/google-cloud-iam)
 
 ### Requirements
 
@@ -32,6 +30,7 @@ you need the following requirements.
 <summary><b>Debian/Ubuntu</b></summary>
 
 Packages:
+
 ```shell
 sudo apt update
 sudo apt install \
@@ -42,6 +41,7 @@ sudo apt install \
 ```
 
 [Google Cloud CLI](https://cloud.google.com/sdk/docs/install#deb):
+
 ```shell
 sudo apt-get install apt-transport-https ca-certificates gnupg
 # Add the gcloud CLI distribution URI as a package source
@@ -58,6 +58,7 @@ sudo apt-get install google-cloud-cli
 <summary><b>macOS</b></summary>
 
 Homebrew packages:
+
 ```shell
 brew install perl
 brew install cpanminus pkg-config
@@ -66,6 +67,7 @@ brew install jq
 ```
 
 Perl modules:
+
 ```shell
 cpanm --installdeps .
 ```
@@ -80,8 +82,9 @@ perl build.pl
 ```
 
 Run:
+
 ```shell
-plackup --host 127.0.0.1
+plackup --host "127.0.0.1" --port "8080"
 ```
 
 ## ❤️ Contributing
