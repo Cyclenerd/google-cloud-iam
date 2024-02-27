@@ -66,7 +66,7 @@ jobs:
           cd build || exit 9
           bash commit.sh || exit 9
 
-      - name: Build web pages
+      - name: Build website
         run: |
           cd build || exit 9
           perl build.pl || exit 9
@@ -77,7 +77,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'page/'
+          path: 'web/'
       # https://github.com/marketplace/actions/deploy-github-pages-site
       - name: Deploy to GitHub Pages
         id: deployment
