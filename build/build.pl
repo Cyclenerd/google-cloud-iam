@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright 2023 Nils Knieling. All Rights Reserved.
+# Copyright 2023-2024 Nils Knieling. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,25 +15,26 @@
 # limitations under the License.
 
 use strict;
+use warnings;
 use JSON::XS;
 use Template;
 use File::Copy;
 
-my $roles_json              = "roles.json";
-my $permissions_csv         = "permissions.csv";
-my $export_roles_json       = "../page/roles.json";
-my $export_permissions_json = "../page/permissions.json";
+my $import_roles_json       = "roles.json";
+my $import_permissions_csv  = "permissions.csv";
+my $export_roles_json       = "../web/roles.json";
+my $export_permissions_json = "../web/permissions.json";
 
 print "Please wait...\n";
 
 # JSON
 
-mkdir('../page/');
+mkdir('../web/');
 
 open(ROLES, '>', $export_roles_json) or die $!;
 open(PERMISSION, '>', $export_permissions_json) or die $!;
 
-open(ROLES_JSON, '<', $roles_json) or die $!;
+open(ROLES_JSON, '<', $import_roles_json) or die $!;
 my $json = "";
 while (my $row = <ROLES_JSON>) {
 	chomp $row;
@@ -41,16 +42,16 @@ while (my $row = <ROLES_JSON>) {
 }
 my $roles_scalar = JSON::XS->new->utf8->decode($json);
 
-my %permission_roles_hash = {};
-my %role_permissions_hash = {};
-open(PERMISSIONS_CSV, '<', $permissions_csv) or die $!;
+my %permission_roles_hash;
+my %role_permissions_hash;
+open(PERMISSIONS_CSV, '<', $import_permissions_csv) or die $!;
 while (my $row = <PERMISSIONS_CSV>) {
 	chomp $row;
 	my @role = split(";", $row);
 	my $role_name = $role[0];
-	my $role_permissions  = $role[1];
+	my $role_permissions  = $role[1] || "";
 	next if ($role_name eq "name"); # Skip header
-	my @permissions = split(",", $role_permissions);
+	my @permissions = split(",", $role_permissions) if $role_permissions;
 	my @permissions_name = ();
 	foreach my $permission_name (sort @permissions) {
 		# Fix role names
@@ -105,8 +106,8 @@ foreach my $permission_name (keys %permission_roles_hash) {
 	});
 }
 
-my $export_roles_json = JSON::XS->new->utf8->encode(\@roles_list);
-print ROLES $export_roles_json;
+my $roles_json = JSON::XS->new->utf8->encode(\@roles_list);
+print ROLES $roles_json;
 
 my $permission_json = JSON::XS->new->utf8->encode(\@permissions_list);
 print PERMISSION $permission_json;
@@ -128,14 +129,14 @@ my $template = Template->new(
 	}
 );
 
-$template->process('index.tt2',       { 'roles' => \@roles_list },             '../page/index.html')       || die "Template process failed: ", $template->error(), "\n";
-$template->process('permissions.tt2', { 'permissions' => \@permissions_list }, '../page/permissions.html') || die "Template process failed: ", $template->error(), "\n";
-$template->process('robots.txt',      {},                                      '../page/robots.txt')       || die "Template process failed: ", $template->error(), "\n";
-$template->process('404.tt2',         {},                                      '../page/404.html')         || die "Template process failed: ", $template->error(), "\n";
+$template->process('index.tt2',       { 'roles' => \@roles_list },             '../web/index.html')       || die "Template process failed: ", $template->error(), "\n";
+$template->process('permissions.tt2', { 'permissions' => \@permissions_list }, '../web/permissions.html') || die "Template process failed: ", $template->error(), "\n";
+$template->process('robots.txt',      {},                                      '../web/robots.txt')       || die "Template process failed: ", $template->error(), "\n";
+$template->process('404.tt2',         {},                                      '../web/404.html')         || die "Template process failed: ", $template->error(), "\n";
 
-copy('./src/img/favicon/favicon.ico',          '../page/favicon.ico');
-copy('./src/img/favicon/favicon-16x16.png',    '../page/favicon-16x16.png');
-copy('./src/img/favicon/favicon-32x32.png',    '../page/favicon-32x32.png');
-copy('./src/img/favicon/apple-touch-icon.png', '../page/apple-touch-icon.png');
+copy('./src/img/favicon/favicon.ico',          '../web/favicon.ico');
+copy('./src/img/favicon/favicon-16x16.png',    '../web/favicon-16x16.png');
+copy('./src/img/favicon/favicon-32x32.png',    '../web/favicon-32x32.png');
+copy('./src/img/favicon/apple-touch-icon.png', '../web/apple-touch-icon.png');
 
 print "DONE\n";

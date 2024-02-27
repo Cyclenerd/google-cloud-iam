@@ -2,4 +2,4 @@
 
 /build/*.json
 /build/*.csv
-/page/**
+/web/**

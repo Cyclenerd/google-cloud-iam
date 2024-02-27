@@ -3,5 +3,5 @@ use strict;
 use warnings;
 use Plack::App::Directory;
 my $app = Plack::App::Directory->new({
-	root => "./page/"
+	root => "../web/"
 })->to_app;
