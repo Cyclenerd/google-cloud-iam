@@ -30,7 +30,6 @@ jobs:
           sudo apt-get install \
             libjson-xs-perl    \
             libtemplate-perl   \
-            libplack-perl      \
             jq
 
       # https://github.com/marketplace/actions/checkout
