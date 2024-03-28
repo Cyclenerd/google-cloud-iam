@@ -19,5 +19,6 @@
 </p>
 </div> <!-- // container -->
 </footer>
+<script src="[% site.bootstrap.js %]"></script>
 </body>
 </html>
