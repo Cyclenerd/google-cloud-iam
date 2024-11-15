@@ -19,6 +19,8 @@
 "roles/aiplatform.colabServiceAgent"
 "roles/aiplatform.customCodeServiceAgent"
 "roles/aiplatform.entityTypeOwner"
+"roles/aiplatform.expressAdmin"
+"roles/aiplatform.expressUser"
 "roles/aiplatform.extensionCustomCodeServiceAgent"
 "roles/aiplatform.extensionServiceAgent"
 "roles/aiplatform.featurestoreAdmin"
