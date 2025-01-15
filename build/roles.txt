@@ -36,6 +36,7 @@
 "roles/aiplatform.notebookRuntimeUser"
 "roles/aiplatform.notebookServiceAgent"
 "roles/aiplatform.onlinePredictionServiceAgent"
+"roles/aiplatform.provisionedThroughputAdmin"
 "roles/aiplatform.ragServiceAgent"
 "roles/aiplatform.rapidevalServiceAgent"
 "roles/aiplatform.reasoningEngineServiceAgent"
