@@ -14,6 +14,10 @@ MY_COUNT=1
 while read -r MY_NAME; do
 	MY_NAME=${MY_NAME//\"/}
 	# Skip basic roles
+	if [[ "$MY_NAME" = "roles/reader" || "$MY_NAME" = "roles/writer" || "$MY_NAME" = "roles/admin" ]]; then
+		continue
+	fi
+	# Skip legacy basic roles originally known as primitive roles
 	if [[ "$MY_NAME" = "roles/owner" || "$MY_NAME" = "roles/editor" || "$MY_NAME" = "roles/viewer" ]]; then
 		continue
 	fi

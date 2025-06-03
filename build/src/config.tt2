@@ -1,6 +1,10 @@
 [%-
 site = {
 	url => 'https://gcloud-iam.nkn-it.de',
+	json = {
+		roles = '/roles.json?v2',
+		permissions = '/permissions.json?v2'
+	}
 	github = {
 		repo   => 'https://github.com/Cyclenerd/google-cloud-iam',
 		issues => 'https://github.com/Cyclenerd/google-cloud-iam/issues',

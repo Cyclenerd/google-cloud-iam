@@ -12,7 +12,7 @@ There are <mark>[% permissions.size %]</mark> Google Cloud Identity and Access M
 
 <script>
 var table = new Tabulator("#table", {
-	ajaxURL:"permissions.json?v1",
+	ajaxURL:"[% site.json.permissions %]",
 	height:"550px",
 	layout:"fitColumns",
 	dataTree:true,
@@ -23,10 +23,11 @@ var table = new Tabulator("#table", {
 	columns:[
 		{title:"Name", field:"name", headerFilter:"input", headerFilterPlaceholder:"Filter permission name...", width: 460, responsive:0},
 		{title:"Role Title", field:"title", headerFilter:"input", width: 360, formatter:function(row){
-			var name  = row.getData().name || '';
+			var name  = row.getData().name  || '';
 			var title = row.getData().title || '';
+			var url   = row.getData().url   || '';
 			if (name.match("roles/") && title) {
-				return '<a href="https://cloud.google.com/iam/docs/understanding-roles#' + name.replace('roles/','') + '" target="_blank">' + title + '</a>';
+				return '<a href="https://cloud.google.com' + url + '" target="_blank">' + title + '</a>';
 			}
 		}},
 		{title:"Role Description", field:"desc", headerFilter:"input"},

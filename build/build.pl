@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright 2023-2024 Nils Knieling. All Rights Reserved.
+# Copyright 2023-2025 Nils Knieling. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,10 +20,12 @@ use JSON::XS;
 use Template;
 use File::Copy;
 
-my $import_roles_json       = "roles.json";
-my $import_permissions_csv  = "permissions.csv";
-my $export_roles_json       = "../web/roles.json";
-my $export_permissions_json = "../web/permissions.json";
+my $import_roles_json             = "roles.json";
+my $import_permissions_csv        = "permissions.csv";
+my $export_roles_json             = "../web/roles.json";
+my $export_permissions_json       = "../web/permissions.json";
+my $roles_permissions_filter_json = "role-permission-filter.json";
+my $default_role_url              = "/iam/docs/roles-permissions?gcloud-iam.nkn-it.de#find-role-or-permission";
 
 print "Please wait...\n";
 
@@ -41,6 +43,14 @@ while (my $row = <ROLES_JSON>) {
 	$json .= $row;
 }
 my $roles_scalar = JSON::XS->new->utf8->decode($json);
+
+open(ROLES_PERMISSIONS_FILTER_JSON, '<', $roles_permissions_filter_json) or die $!;
+my $roles_permissions_filter = "";
+while (my $row = <ROLES_PERMISSIONS_FILTER_JSON>) {
+	chomp $row;
+	$roles_permissions_filter .= $row;
+}
+my $roles_permissions_filter_scalar = JSON::XS->new->utf8->decode($roles_permissions_filter);
 
 my %permission_roles_hash;
 my %role_permissions_hash;
@@ -72,11 +82,19 @@ foreach my $role (@{$roles_scalar}) {
 	my $role_description = $role->{'description'} || '-';
 	my $role_stage       = $role->{'stage'}       || '?';
 	$role_description =~ s/^\s//; # Remove beginning white space
+	# Filter roles for documentation link
+	my $role_url = $default_role_url;
+	foreach my $role_filter (@{$roles_permissions_filter_scalar->{roles}}) {
+		if ($role_filter->{name} eq $role_name) {
+			$role_url = $role_filter->{url};
+		}
+	}
 	push(@roles_list, {
 		name        => $role_name,
 		title       => $role_title,
 		desc        => $role_description,
 		stage       => $role_stage,
+		url         => $role_url,
 		permissions => $role_permissions_hash{$role_name}
 	});
 }
@@ -91,11 +109,19 @@ foreach my $permission_name (keys %permission_roles_hash) {
 				my $role_title       = $role->{'title'}       || '???';
 				my $role_description = $role->{'description'} || '-';
 				my $role_stage       = $role->{'stage'}       || '?';
+				# Filter roles for documentation link
+				my $role_url = $default_role_url;
+				foreach my $role_filter (@{$roles_permissions_filter_scalar->{roles}}) {
+					if ($role_filter->{name} eq $role_name) {
+						$role_url = $role_filter->{url};
+					}
+				}
 				push(@roles_name, {
 					name        => $role_name,
 					title       => $role_title,
 					desc        => $role_description,
-					stage       => $role_stage
+					stage       => $role_stage,
+					url         => $role_url,
 				});
 			}
 		}

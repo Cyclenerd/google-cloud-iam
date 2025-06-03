@@ -7,7 +7,7 @@
 This webapp lists predefined roles and permissions for Google Cloud Platform Identity and Access Management (IAM).
 
 I built it so that I can quickly search for permissions and identify the associated role.
-The official [Google Documentation](https://cloud.google.com/iam/docs/understanding-roles) is too slow and messy for me.
+The official [Google Documentation](https://cloud.google.com/iam/docs/roles-permissions) is too slow and messy for me.
 
 [![Screenshot](./img/permissions.png)](https://gcloud-iam.nkn-it.de/permissions.html)
 

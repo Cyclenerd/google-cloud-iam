@@ -5,9 +5,6 @@
 	PROCESS meta.tt2;
 	PROCESS favicon.tt2;
 %]
-<link rel="stylesheet" href="[% site.bootstrap.css %]">
-<link rel="stylesheet" href="[% site.tabulator.css %]">
-<script src="[% site.tabulator.js %]"></script>
 </head>
 <body>
 <header>
