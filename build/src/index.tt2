@@ -27,7 +27,7 @@ var table = new Tabulator("#table", {
 			var title = row.getData().title || '';
 			var url   = row.getData().url   || '';
 			if (name.match("roles/") && title) {
-				return '<a href="https://cloud.google.com' + url + '" target="_blank">' + title + '</a>';
+				return '<a href="https://docs.cloud.google.com' + url + '" target="_blank">' + title + '</a>';
 			}
 		}},
 		{title:"Description", field:"desc", headerFilter:"input"},
