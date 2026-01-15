@@ -82,6 +82,7 @@
 "roles/apigee.analyticsViewer"
 "roles/apigee.apiAdminV2"
 "roles/apigee.apiReaderV2"
+"roles/apigee.apimServiceExtensionServiceAgent"
 "roles/apigee.deploymentInvoker"
 "roles/apigee.developerAdmin"
 "roles/apigee.environmentAdmin"
