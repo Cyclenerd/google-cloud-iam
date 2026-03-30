@@ -71,7 +71,7 @@ jobs:
           perl build.pl || exit 9
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       # https://github.com/marketplace/actions/upload-github-pages-artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
