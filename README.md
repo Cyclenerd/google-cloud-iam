@@ -77,8 +77,8 @@ Build catalog:
 
 ```shell
 cd build
-bash roles.sh
-bash permissions.sh
+gcloud auth list
+python3 permissions.py --token "$(gcloud auth print-access-token)"
 ```
 
 Build website:
