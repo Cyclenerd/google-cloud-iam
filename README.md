@@ -73,11 +73,17 @@ cpanm --installdeps .
 ```
 </details>
 
-Build:
+Build catalog:
+
 ```shell
 cd build
 bash roles.sh
 bash permissions.sh
+```
+
+Build website:
+
+```bash
 perl build.pl
 ```
 

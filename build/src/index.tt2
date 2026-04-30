@@ -10,6 +10,12 @@ There are <mark>[% roles.size %]</mark> Google Cloud Identity and Access Managem
 
 <div id="table"></div>
 
+<div class="alert alert-info mt-3" role="alert">
+<strong>💡 Tip:</strong>
+You can filter the table using URL parameters.
+For example: <code>https://gcloud-iam.nkn-it.de/?name=viewer&amp;title=Compute&amp;desc=Read&amp;stage=GA</code>
+</div>
+
 <script>
 var table = new Tabulator("#table", {
 	ajaxURL:"[% site.json.roles %]",
@@ -38,7 +44,29 @@ var table = new Tabulator("#table", {
 	]
 });
 table.on("tableBuilt", function(){
-	table.setHeaderFilterFocus("name");
+	const urlParams = new URLSearchParams(window.location.search);
+	let hasFilters = false;
+	
+	if (urlParams.has('name')) {
+		table.setHeaderFilterValue("name", urlParams.get('name'));
+		hasFilters = true;
+	}
+	if (urlParams.has('title')) {
+		table.setHeaderFilterValue("title", urlParams.get('title'));
+		hasFilters = true;
+	}
+	if (urlParams.has('desc')) {
+		table.setHeaderFilterValue("desc", urlParams.get('desc'));
+		hasFilters = true;
+	}
+	if (urlParams.has('stage')) {
+		table.setHeaderFilterValue("stage", urlParams.get('stage'));
+		hasFilters = true;
+	}
+	
+	if (!hasFilters) {
+		table.setHeaderFilterFocus("name");
+	}
 });
 </script>
 

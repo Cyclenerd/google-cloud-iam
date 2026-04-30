@@ -10,6 +10,12 @@ There are <mark>[% permissions.size %]</mark> Google Cloud Identity and Access M
 
 <div id="table"></div>
 
+<div class="alert alert-info mt-3" role="alert">
+<strong>💡 Tip:</strong>
+You can filter the table using URL parameters.
+For example: <code>https://gcloud-iam.nkn-it.de/permissions.html?name=compute.instances.create</code>
+</div>
+
 <script>
 var table = new Tabulator("#table", {
 	ajaxURL:"[% site.json.permissions %]",
@@ -22,7 +28,7 @@ var table = new Tabulator("#table", {
 	headerFilterLiveFilterDelay:10,
 	columns:[
 		{title:"Name", field:"name", headerFilter:"input", headerFilterPlaceholder:"Filter permission name...", width: 460, responsive:0},
-		{title:"Role Title", field:"title", headerFilter:"input", width: 360, formatter:function(row){
+		{title:"Role Title", field:"title", width: 360, formatter:function(row){
 			var name  = row.getData().name  || '';
 			var title = row.getData().title || '';
 			var url   = row.getData().url   || '';
@@ -30,15 +36,21 @@ var table = new Tabulator("#table", {
 				return '<a href="https://docs.cloud.google.com' + url + '" target="_blank">' + title + '</a>';
 			}
 		}},
-		{title:"Role Description", field:"desc", headerFilter:"input"},
-		{title:"Stage", field:"stage", headerFilter:"input", width: 100}
+		{title:"Role Description", field:"desc"},
+		{title:"Stage", field:"stage", width: 100}
 	],
 	initialSort:[
 		{column:"name", dir:"asc"}
 	]
 });
 table.on("tableBuilt", function(){
-	table.setHeaderFilterFocus("name");
+	const urlParams = new URLSearchParams(window.location.search);
+	
+	if (urlParams.has('name')) {
+		table.setHeaderFilterValue("name", urlParams.get('name'));
+	} else {
+		table.setHeaderFilterFocus("name");
+	}
 });
 </script>
 
