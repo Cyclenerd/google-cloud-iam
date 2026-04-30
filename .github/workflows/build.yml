@@ -50,15 +50,10 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v3'
       # Now you can run gcloud commands authenticated as the impersonated service account.
 
-      - name: Get roles
+      - name: Get catalog
         run: |
           cd build || exit 9
-          bash roles.sh || exit 9
-
-      - name: Get permissions
-        run: |
-          cd build || exit 9
-          bash permissions.sh || exit 9
+          python3 permissions.py || exit 9
 
       - name: Commit IAM changes
         run: |
