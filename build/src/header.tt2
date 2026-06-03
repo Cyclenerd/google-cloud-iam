@@ -19,6 +19,7 @@
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More Tools</a>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="https://gcloud-compute.com/">Google Compute Engine Machine Type Comparison</a></li>
+						<li><a class="dropdown-item" href="https://gcloud-org-policies.nkn-it.de/">Google Compute Organization Policy Constraints</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="https://aws-pricing.com/">Amazon EC2 Instance Type Comparison</a></li>
 						<li><a class="dropdown-item" href="https://ami.nkn-it.de/">Amazon Machine Images (AMIs)</a></li>
