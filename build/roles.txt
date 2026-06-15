@@ -1136,6 +1136,7 @@
 "roles/firebaseauth.editor"
 "roles/firebaseauth.viewer"
 "roles/firebasecloudmessaging.admin"
+"roles/firebasecloudmessaging.viewer"
 "roles/firebasecrash.symbolMappingsAdmin"
 "roles/firebasecrashlytics.admin"
 "roles/firebasecrashlytics.serviceAgent"
